@@ -2,10 +2,10 @@
 FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
 
 
-COPY ./JavaHTTPServer.java /opt
-COPY ./index.html /opt
+COPY ./JavaHTTPServer.java .
+COPY ./index.html .
 
-WORKDIR /opt
+WORKDIR .
 RUN javac JavaHTTPServer.java
 CMD ["java", "JavaHTTPServer"]
 
