@@ -2,10 +2,11 @@
 FROM openjdk18-openshift
 
 
-COPY ./JavaHTTPServer.java /opt
-COPY ./index.html /opt
+COPY ./JavaHTTPServer.java /var/www/java
+COPY ./index.html /var/www/java
 
-CMD javac /opt/JavaHTTPServer.java
-CMD java /opt/JavaHTTPServer.java
+WORKDIR /var/www/java
+RUN javac JavaHTTPServer.java
+CMD ["java", "JavaHTTPServer"]
 
 EXPOSE 8080
