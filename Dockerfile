@@ -2,10 +2,10 @@
 FROM openjdk18-openshift
 
 
-COPY ./JavaHTTPServer.java /var/www/java
-COPY ./index.html /var/www/java
+COPY ./JavaHTTPServer.java /opt
+COPY ./index.html /opt
 
-WORKDIR /var/www/java
+WORKDIR /opt
 RUN javac JavaHTTPServer.java
 CMD ["java", "JavaHTTPServer"]
 
