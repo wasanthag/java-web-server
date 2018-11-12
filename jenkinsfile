@@ -3,7 +3,7 @@ node("maven")
     stage("Checkout") {
      git url: "https://github.com/wasanthag/java-web-server.git", branch: "master"
      }
-    stage("Build WAR") {
+    stage("Build JAR") {
       sh "mvn clean package"
       stash name:"jar", includes:"target/java-web-server-1.0-SNAPSHOT.jar"
       }
