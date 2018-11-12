@@ -4,7 +4,7 @@ node("maven")
      git url: "https://github.com/wasanthag/java-web-server.git", branch: "master"
      }
     stage("Build WAR") {
-      sh "mvn clean package -Popenshift"
+      sh "mvn clean package"
       stash name:"war", includes:"target/ROOT.war"
       }
   }
