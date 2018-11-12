@@ -34,7 +34,7 @@ spec:
         deploymentconfig: java-web-server
     spec:
       containers:
-      - image: 172.30.1.1:5000/myproject/java-web-server
+      - image: 172.30.1.1:5000/jenkins/java-web-server
         imagePullPolicy: Always
         name: java-web-server
         ports:
