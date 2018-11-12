@@ -5,6 +5,6 @@ node("maven")
      }
     stage("Build WAR") {
       sh "mvn clean package"
-      stash name:"war", includes:"target/java-web-server-1.0-SNAPSHOT.jar"
+      stash name:"jar", includes:"target/java-web-server-1.0-SNAPSHOT.jar"
       }
   }
