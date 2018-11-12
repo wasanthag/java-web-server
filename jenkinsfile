@@ -5,6 +5,6 @@ node("maven")
      }
     stage("Build WAR") {
       sh "mvn clean package"
-      stash name:"war", includes:"target/ROOT.war"
+      stash name:"war", includes:"target/ROOT.jar"
       }
   }
