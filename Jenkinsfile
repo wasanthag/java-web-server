@@ -11,6 +11,7 @@ node("maven")
 node {
       stage("Build Image") {
         unstash name:"jar"
+        sh "oc delete build --all"  
         sh "oc start-build java-web-server --from-file=target/java-web-server-1.0-SNAPSHOT.jar -n jenkins"
         timeout(time: 5, unit: 'MINUTES') {
            openshift.withCluster() {
@@ -20,7 +21,7 @@ node {
                def blds = bc.related('builds')
                blds.untilEach {
                  echo "Watching new builds created by buildconfig: ${it.names()} : ${it.object().status.phase}"
-                 return ${it.object().status.phase} == "Complete"
+                 return it.object().status.phase == "Complete"
                }
              }
             }  
