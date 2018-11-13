@@ -1,0 +1,11 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "poc-pipeline"
+spec:
+  source:
+    git:
+      uri: "https://github.com/jnach/OpenShift-PoC-Pipeline.git"
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: Jenkinsfile
