@@ -27,3 +27,11 @@ node {
           }
         }
 }
+stage("Deploy") {
+                    openshift.withCluster() {
+                      openshift.withProject() {
+                        def dc = openshift.selector('dc', "java-web-server")
+                        dc.rollout().status()
+                      }
+                    }
+                  }
