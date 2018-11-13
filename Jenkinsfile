@@ -15,32 +15,13 @@ node {
         timeout(time: 5, unit: 'MINUTES') {
            openshift.withCluster() {
              openshift.withProject() {
-               def nb = openshift.newBuild( "https://github.com/wasanthag/java-web-server", "--name=java-web-server" )
-
-               // Print out information about the objects created by newBuild
-               echo "newBuild created: ${nb.count()} objects : ${nb.names()}"
-
-               // Filter non-BuildConfig objects and create selector which will find builds related to the BuildConfig
-               def builds = nb.narrow("bc").related( "builds" )
-
-        // Raw watch which only terminates when the closure body returns true
-               builds.watch {
-            // 'it' is bound to the builds selector.
-            // Continue to watch until at least one build is detected
-               if ( it.count() == 0 ) {
-                   return false
-            }
-            // Print out the build's name and terminate the watch
-               echo "Detected new builds created by buildconfig: ${it.names()}"
-               return true
-        }
-
-        echo "Waiting for builds to complete..."
-
-        // Like a watch, but only terminate when at least one selected object meets condition
-        builds.untilEach {
-            return it.object().status.phase == "Complete"
-}
+               def bc = openshift.selector('bc', "java-web-server")
+               echo "Found 1 ${bc.count()} buildconfig"
+               def blds = bc.related('builds')
+               blds.untilEach {
+                 echo "Watching new builds created by buildconfig: ${it.names()} : ${it.object().status.phase}"
+                 return it.object().status.phase == "Complete"
+               }
              }
             }  
           }
