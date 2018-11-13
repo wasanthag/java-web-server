@@ -58,7 +58,7 @@ spec:
       from:
         kind: ImageStreamTag
         name: java-web-server:latest
-        namespace: myproject
+        namespace: jenkins
     type: ImageChange
 status:
   availableReplicas: 0
