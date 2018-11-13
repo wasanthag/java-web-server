@@ -19,8 +19,8 @@ node {
                echo "Found 1 ${bc.count()} buildconfig"
                def blds = bc.related('builds')
                blds.untilEach {
-                 echo "Watching new builds created by buildconfig: ${it.names()} : $(it.object().status.phase)"
-                 return it.object().status.phase == "Complete"
+                 echo "Watching new builds created by buildconfig: ${it.names()} : ${it.object().status.phase}"
+                 return ${it.object().status.phase} == "Complete"
                }
              }
             }  
