@@ -1,7 +1,7 @@
 node("maven") 
 {
     stage("Checkout") {
-     git url: "https://github.com/wasanthag/java-web-server.git", branch: "master"
+     git url: "https://github.com/wasanthag/openshift-pipeline-poc.git", branch: "master"
      }
     stage("Build JAR") {
       sh "mvn clean package"
