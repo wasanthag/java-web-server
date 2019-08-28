@@ -11,7 +11,7 @@ node("maven")
 node {
       stage("Build Image") {
         unstash name:"jar"
-        sh "oc start-build java-web-server --from-file=target/java-web-server-1.0-SNAPSHOT.jar -n jenkins"
+        sh "oc start-build java-web-server --from-file=target/java-web-server-1.0-SNAPSHOT.jar -n cicd"
         timeout(time: 5, unit: 'MINUTES') {
            openshift.withCluster() {
              openshift.withProject() {
