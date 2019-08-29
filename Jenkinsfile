@@ -7,7 +7,7 @@ node("maven")
       sh "mvn clean package"
       stash name:"jar", includes:"target/java-web-server-1.0-SNAPSHOT.jar"
       }
-  }
+  
     stage("Build Image") {
       unstash name:"jar"
       sh "oc create -f java-web-server-bc.yml"
@@ -27,7 +27,7 @@ node("maven")
           }  
         }
       }
-
+ }
 stage("Deploy") {
                     openshift.withCluster() {
                       openshift.withProject() {
