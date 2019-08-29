@@ -2,11 +2,10 @@
 FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
 
 
-COPY ./JavaHTTPServer.java .
+COPY target/java-web-server-1.0-SNAPSHOT.jar .
 COPY ./index.html .
 
 WORKDIR .
-RUN javac JavaHTTPServer.java
-CMD ["java", "JavaHTTPServer"]
+CMD java -jar target/java-web-server-1.0-SNAPSHOT.jar
 
 EXPOSE 8080
